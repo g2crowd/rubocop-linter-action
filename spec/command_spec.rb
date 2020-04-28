@@ -9,7 +9,7 @@ describe Command do
     it "returns built command" do
       command = Command.new(config).build
       expect(command).to eq(
-        "git diff origin/master --name-only --diff-filter=AM | xargs rubocop --parallel "\
+        "git diff-tree --no-commit-id --name-only --diff-filter=AM -r HEAD | xargs rubocop --parallel "\
          "-f json --fail-level error -c .rubocop.yml --except Style/FrozenStringLiteralComment --force-exclusion"
       )
     end

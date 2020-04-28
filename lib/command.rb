@@ -20,7 +20,9 @@ class Command
   end
 
   def check_scope
-    return "git diff origin/master --name-only --diff-filter=AM | xargs" if config["check_scope"] == "modified"
+    return unless config["check_scope"] == "modified"
+
+    "git diff-tree --no-commit-id --name-only --diff-filter=AM -r HEAD | xargs"
   end
 
   def rubocop_config
