@@ -14,7 +14,7 @@ class Install
   def run
     return system("bundle install") if config.fetch("bundle", false)
 
-    system("gem install #{dependencies}")
+    system("gem install #{dependencies} --no-document")
   end
 
   private
