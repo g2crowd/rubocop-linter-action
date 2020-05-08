@@ -25,7 +25,7 @@ describe Install do
         YAML
       end
 
-      it { expect(subject).to have_received(:system).with("bundle install") }
+      it { expect(subject).to have_received(:system).with("bundle install --gemfile=Gemfile") }
     end
 
     context "when there's no version specified" do
@@ -50,8 +50,9 @@ describe Install do
       end
 
       it do
-        expect(subject).to have_received(:system)
-                             .with("gem install rubocop:0.79.0 rubocop-rails rubocop-rspec --no-document")
+        expect(subject).to(
+          have_received(:system).with("gem install rubocop:0.79.0 rubocop-rails rubocop-rspec --no-document")
+        )
       end
 
       context "when 'rubocop' is not included in the dependencies" do
@@ -64,8 +65,9 @@ describe Install do
         end
 
         it do
-          expect(subject).to have_received(:system)
-                               .with("gem install rubocop rubocop-rails rubocop-rspec:1.37.0 --no-document")
+          expect(subject).to(
+            have_received(:system).with("gem install rubocop rubocop-rails rubocop-rspec:1.37.0 --no-document")
+          )
         end
       end
     end

@@ -12,7 +12,8 @@ class Install
   end
 
   def run
-    return system("bundle install") if config.fetch("bundle", false)
+    gemfile = config.fetch("gemfile", "Gemfile")
+    return system("bundle install --gemfile=#{gemfile}") if config.fetch("bundle", false)
 
     system("gem install #{dependencies} --no-document")
   end
