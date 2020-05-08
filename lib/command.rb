@@ -10,7 +10,7 @@ class Command
   def build
     return base_command unless config
 
-    "#{check_scope} #{base_command} #{fail_level} #{rubocop_config} #{excluded} #{force_exclusion}".strip.squeeze(" ")
+    "#{base_command} #{fail_level} #{rubocop_config} #{excluded} #{force_exclusion} #{check_scope}".strip.squeeze(" ")
   end
 
   private
@@ -22,7 +22,7 @@ class Command
   def check_scope
     return unless config["check_scope"] == "modified"
 
-    "git diff-tree --no-commit-id --name-only --diff-filter=AM -r HEAD | xargs"
+    "-- $(git diff-tree --no-commit-id --name-only --diff-filter=AM -r HEAD | grep . || echo '/dev/null')"
   end
 
   def rubocop_config

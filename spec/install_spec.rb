@@ -15,7 +15,7 @@ describe Install do
     context "when there's no configuration" do
       let(:config_file) { "" }
 
-      it { expect(subject).to have_received(:system).with("gem install rubocop") }
+      it { expect(subject).to have_received(:system).with("gem install rubocop --no-document") }
     end
 
     context "when it's set to resolve dependencies through bundler" do
@@ -36,7 +36,7 @@ describe Install do
         YAML
       end
 
-      it { expect(subject).to have_received(:system).with("gem install rubocop") }
+      it { expect(subject).to have_received(:system).with("gem install rubocop --no-document") }
     end
 
     context "when the versions are specified" do
@@ -49,7 +49,10 @@ describe Install do
         YAML
       end
 
-      it { expect(subject).to have_received(:system).with("gem install rubocop:0.79.0 rubocop-rails rubocop-rspec") }
+      it do
+        expect(subject).to have_received(:system)
+                             .with("gem install rubocop:0.79.0 rubocop-rails rubocop-rspec --no-document")
+      end
 
       context "when 'rubocop' is not included in the dependencies" do
         let(:config_file) do
@@ -60,7 +63,10 @@ describe Install do
           YAML
         end
 
-        it { expect(subject).to have_received(:system).with("gem install rubocop rubocop-rails rubocop-rspec:1.37.0") }
+        it do
+          expect(subject).to have_received(:system)
+                               .with("gem install rubocop rubocop-rails rubocop-rspec:1.37.0 --no-document")
+        end
       end
     end
   end
