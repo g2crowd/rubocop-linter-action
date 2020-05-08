@@ -1,13 +1,5 @@
 # Changelog
 
-## [Unreleased](https://github.com/andrewmcodes/rubocop-linter-action/tree/HEAD)
-
-[Full Changelog](https://github.com/andrewmcodes/rubocop-linter-action/compare/v3.1.0...HEAD)
-
-**Merged pull requests:**
-
-- Ignore stderr when running the command [\#132](https://github.com/andrewmcodes/rubocop-linter-action/pull/132) ([michaelherold](https://github.com/michaelherold))
-
 ## [v3.1.0](https://github.com/andrewmcodes/rubocop-linter-action/tree/v3.1.0) (2020-03-12)
 
 [Full Changelog](https://github.com/andrewmcodes/rubocop-linter-action/compare/v3.0.0...v3.1.0)
@@ -30,6 +22,7 @@
 
 **Merged pull requests:**
 
+- Ignore stderr when running the command [\#132](https://github.com/andrewmcodes/rubocop-linter-action/pull/132) ([michaelherold](https://github.com/michaelherold))
 - Release v3.1.0 [\#130](https://github.com/andrewmcodes/rubocop-linter-action/pull/130) ([andrewmcodes](https://github.com/andrewmcodes))
 - docs: add es50678 as a contributor [\#129](https://github.com/andrewmcodes/rubocop-linter-action/pull/129) ([allcontributors[bot]](https://github.com/apps/allcontributors))
 - Add Force Exclusion configuration option [\#127](https://github.com/andrewmcodes/rubocop-linter-action/pull/127) ([es50678](https://github.com/es50678))
@@ -98,7 +91,6 @@
 
 - Add documentation around what will happen if the action is triggered by a pr from a forked repo [\#100](https://github.com/andrewmcodes/rubocop-linter-action/pull/100) ([andrewmcodes](https://github.com/andrewmcodes))
 - issue 96 exploration [\#99](https://github.com/andrewmcodes/rubocop-linter-action/pull/99) ([andrewmcodes](https://github.com/andrewmcodes))
-- tweak the way we read the config file [\#98](https://github.com/andrewmcodes/rubocop-linter-action/pull/98) ([andrewmcodes](https://github.com/andrewmcodes))
 - Enhanced dependency configuration and resolution [\#95](https://github.com/andrewmcodes/rubocop-linter-action/pull/95) ([erichmachado](https://github.com/erichmachado))
 - docs: add erichmachado as a contributor [\#94](https://github.com/andrewmcodes/rubocop-linter-action/pull/94) ([allcontributors[bot]](https://github.com/apps/allcontributors))
 - ReportAdapter\#column\_check correctly parses the last\_column value [\#92](https://github.com/andrewmcodes/rubocop-linter-action/pull/92) ([erichmachado](https://github.com/erichmachado))
@@ -109,6 +101,7 @@
 
 **Merged pull requests:**
 
+- tweak the way we read the config file [\#98](https://github.com/andrewmcodes/rubocop-linter-action/pull/98) ([andrewmcodes](https://github.com/andrewmcodes))
 - v3.0.0.rc2 release [\#89](https://github.com/andrewmcodes/rubocop-linter-action/pull/89) ([andrewmcodes](https://github.com/andrewmcodes))
 - refactor and update docs [\#88](https://github.com/andrewmcodes/rubocop-linter-action/pull/88) ([andrewmcodes](https://github.com/andrewmcodes))
 - Update build action [\#86](https://github.com/andrewmcodes/rubocop-linter-action/pull/86) ([andrewmcodes](https://github.com/andrewmcodes))
@@ -120,6 +113,7 @@
 **Merged pull requests:**
 
 - docs: add excid3 as a contributor [\#81](https://github.com/andrewmcodes/rubocop-linter-action/pull/81) ([allcontributors[bot]](https://github.com/apps/allcontributors))
+- Bugfix/respect rubocop level [\#72](https://github.com/andrewmcodes/rubocop-linter-action/pull/72) ([hackerdude](https://github.com/hackerdude))
 
 ## [v2.0.1](https://github.com/andrewmcodes/rubocop-linter-action/tree/v2.0.1) (2019-12-18)
 
@@ -144,7 +138,6 @@
 - docs: add hackerdude as a contributor [\#76](https://github.com/andrewmcodes/rubocop-linter-action/pull/76) ([allcontributors[bot]](https://github.com/apps/allcontributors))
 - only push to the playground repo on push [\#74](https://github.com/andrewmcodes/rubocop-linter-action/pull/74) ([andrewmcodes](https://github.com/andrewmcodes))
 - fix obsolete configuration error in rubocop config [\#73](https://github.com/andrewmcodes/rubocop-linter-action/pull/73) ([andrewmcodes](https://github.com/andrewmcodes))
-- Bugfix/respect rubocop level [\#72](https://github.com/andrewmcodes/rubocop-linter-action/pull/72) ([hackerdude](https://github.com/hackerdude))
 - Fix version reference in README [\#65](https://github.com/andrewmcodes/rubocop-linter-action/pull/65) ([eregon](https://github.com/eregon))
 - docs: add InteNs as a contributor [\#62](https://github.com/andrewmcodes/rubocop-linter-action/pull/62) ([allcontributors[bot]](https://github.com/apps/allcontributors))
 - docs: add chiefpansancolt as a contributor [\#61](https://github.com/andrewmcodes/rubocop-linter-action/pull/61) ([allcontributors[bot]](https://github.com/apps/allcontributors))
