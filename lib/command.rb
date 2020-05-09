@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class Command
-  attr_reader :config
+  attr_reader :github_data, :config
 
-  def initialize(config)
+  def initialize(github_data, config)
+    @github_data = github_data
     @config = config
   end
 
@@ -16,7 +17,7 @@ class Command
   private
 
   def base_branch
-    config.fetch("base_branch", "origin/master")
+    config["base_branch"] || github_data.base_ref || "origin/master"
   end
 
   def base_command
@@ -24,26 +25,28 @@ class Command
   end
 
   def check_scope
-    return "git diff #{base_branch} --name-only --diff-filter=AM | xargs" if config["check_scope"] == "modified"
+    return unless config["check_scope"] == "modified"
+
+    "git diff #{base_branch}... --name-only --diff-filter=AM | xargs"
   end
 
   def rubocop_config
     rubocop_config = config.fetch("rubocop_config_path", "")
-    return "-c #{rubocop_config}" unless rubocop_config.empty?
+    "-c #{rubocop_config}" unless rubocop_config.empty?
   end
 
   def excluded
     excluded_cops = config.fetch("rubocop_excluded_cops", "")
-    return "--except #{excluded_cops.join(' ')}" unless excluded_cops.empty?
+    "--except #{excluded_cops.join(' ')}" unless excluded_cops.empty?
   end
 
   def fail_level
     level = config.fetch("rubocop_fail_level", "")
-    return "--fail-level #{level}" unless level.empty?
+    "--fail-level #{level}" unless level.empty?
   end
 
   def force_exclusion
     force_exclusion = config.fetch("rubocop_force_exclusion", "").to_s
-    return "--force-exclusion" unless force_exclusion.empty? || force_exclusion == "false"
+    "--force-exclusion" unless force_exclusion.empty? || force_exclusion == "false"
   end
 end

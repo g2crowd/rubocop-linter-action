@@ -43,7 +43,7 @@ class RubocopLinterAction
   end
 
   def command
-    Command.new(config).build
+    Command.new(github_data, config).build
   end
 
   def report
