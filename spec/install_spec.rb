@@ -25,7 +25,7 @@ describe Install do
         YAML
       end
 
-      it { expect(subject).to have_received(:system).with("bundle install") }
+      it { expect(subject).to have_received(:system).with("bundle install --gemfile=Gemfile") }
     end
 
     context "when there's no version specified" do
