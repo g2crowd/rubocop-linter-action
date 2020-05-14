@@ -25,8 +25,8 @@ describe Command do
         context "when github base_ref is defined", :base_ref do
           it "uses base_ref for diff" do
             expect(command.build).to eq(
-              "git diff origin/integration... --name-only --diff-filter=AM | xargs "\
-              "rubocop --parallel -f json"
+              "rubocop --parallel -f json "\
+              "-- $(git diff origin/integration... --name-only --diff-filter=AM | grep . || echo '/dev/null')"
             )
           end
         end
@@ -41,8 +41,8 @@ describe Command do
 
           it "uses base_branch for diff" do
             expect(command.build).to eq(
-              "git diff origin/develop... --name-only --diff-filter=AM | xargs "\
-              "rubocop --parallel -f json"
+              "rubocop --parallel -f json "\
+              "-- $(git diff origin/develop... --name-only --diff-filter=AM | grep . || echo '/dev/null')"
             )
           end
         end
@@ -57,8 +57,8 @@ describe Command do
 
           it "gives precedence to base_branch" do
             expect(command.build).to eq(
-              "git diff origin/develop... --name-only --diff-filter=AM | xargs "\
-              "rubocop --parallel -f json"
+              "rubocop --parallel -f json "\
+              "-- $(git diff origin/develop... --name-only --diff-filter=AM | grep . || echo '/dev/null')"
             )
           end
         end
@@ -66,8 +66,8 @@ describe Command do
         context "when neither base_branch nor github base_ref are defined" do
           it "defaults to origin/master" do
             expect(command.build).to eq(
-              "git diff origin/master... --name-only --diff-filter=AM | xargs "\
-              "rubocop --parallel -f json"
+              "rubocop --parallel -f json "\
+              "-- $(git diff origin/master... --name-only --diff-filter=AM | grep . || echo '/dev/null')"
             )
           end
         end
@@ -127,9 +127,9 @@ describe Command do
 
         it "returns built command" do
           expect(command.build).to eq(
-            "git diff origin/develop... --name-only --diff-filter=AM | xargs "\
             "rubocop --parallel -f json "\
-            "--fail-level error -c .rubocop.yml --except Style/FrozenStringLiteralComment --force-exclusion"
+            "--fail-level error -c .rubocop.yml --except Style/FrozenStringLiteralComment --force-exclusion "\
+            "-- $(git diff origin/develop... --name-only --diff-filter=AM | grep . || echo '/dev/null')"
           )
         end
       end

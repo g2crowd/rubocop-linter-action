@@ -11,7 +11,7 @@ class Command
   def build
     return base_command unless config
 
-    "#{check_scope} #{base_command} #{fail_level} #{rubocop_config} #{excluded} #{force_exclusion}".strip.squeeze(" ")
+    "#{base_command} #{fail_level} #{rubocop_config} #{excluded} #{force_exclusion} #{check_scope}".strip.squeeze(" ")
   end
 
   private
@@ -27,7 +27,7 @@ class Command
   def check_scope
     return unless config["check_scope"] == "modified"
 
-    "git diff #{base_branch}... --name-only --diff-filter=AM | xargs"
+    "-- $(git diff #{base_branch}... --name-only --diff-filter=AM | grep . || echo '/dev/null')"
   end
 
   def rubocop_config
