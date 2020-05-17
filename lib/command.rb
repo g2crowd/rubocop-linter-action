@@ -3,8 +3,7 @@
 class Command
   attr_reader :github_data, :config
 
-  def initialize(github_data, config)
-    @github_data = github_data
+  def initialize(config)
     @config = config
   end
 
@@ -17,7 +16,7 @@ class Command
   private
 
   def base_branch
-    config["base_branch"] || github_data.base_ref || "origin/master"
+    config["base_branch"] || "origin/master"
   end
 
   def base_command

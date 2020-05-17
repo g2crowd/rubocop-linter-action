@@ -3,13 +3,7 @@
 require "./spec/spec_helper"
 
 describe Command do
-  subject(:command) { Command.new(github_data, config) }
-
-  let(:github_data) { instance_double Github::Data, base_ref: nil }
-
-  before :each, base_ref: true do
-    allow(github_data).to receive(:base_ref).and_return("origin/integration")
-  end
+  subject(:command) { Command.new(config) }
 
   describe "#build" do
     context "when config file exists" do
@@ -20,15 +14,6 @@ describe Command do
           <<~YAML
             check_scope: modified
           YAML
-        end
-
-        context "when github base_ref is defined", :base_ref do
-          it "uses base_ref for diff" do
-            expect(command.build).to eq(
-              "rubocop --parallel -f json "\
-              "-- $(git diff origin/integration... --name-only --diff-filter=AM | grep . || echo '/dev/null')"
-            )
-          end
         end
 
         context "when base_branch configuration option is specified" do
@@ -47,23 +32,7 @@ describe Command do
           end
         end
 
-        context "when both base_branch and github base_ref are defined", :base_ref do
-          let(:config_file) do
-            <<~YAML
-              base_branch: origin/develop
-              check_scope: modified
-            YAML
-          end
-
-          it "gives precedence to base_branch" do
-            expect(command.build).to eq(
-              "rubocop --parallel -f json "\
-              "-- $(git diff origin/develop... --name-only --diff-filter=AM | grep . || echo '/dev/null')"
-            )
-          end
-        end
-
-        context "when neither base_branch nor github base_ref are defined" do
+        context "when base_branch is not defined" do
           it "defaults to origin/master" do
             expect(command.build).to eq(
               "rubocop --parallel -f json "\
