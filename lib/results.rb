@@ -6,9 +6,11 @@ class Results
   attr_accessor :output, :status_code
 
   def initialize(command)
+    puts command
     Open3.popen2(command) do |stdin, stdout, thread|
       stdin.close
       @output = stdout.read
+      puts @output
       @status_code = thread.value.exitstatus
     end
   end
